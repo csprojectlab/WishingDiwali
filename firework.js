@@ -10,7 +10,7 @@ class Firework {
       this.state = "explosion"  // > formation
       this.scatteredPoints = [];
       this.tolerance = 0.05;
-      this.explosionPoint = random(50,200);
+      this.explosionPoint = random(50,220);
     }
 
     done() {
@@ -57,9 +57,10 @@ class Firework {
         // Draw each point, moving it towards its target
         push()
         stroke(this.color)
-        fill(this.color)
+        strokeWeight(2)
+        //fill(this.color)
         this.scatteredPoints.forEach((pt) => {
-          ellipse(pt.x, pt.y, 5, 5);
+          point(pt.x, pt.y);
         });
         pop();
       }
@@ -67,7 +68,8 @@ class Firework {
 
     update() {
       if (this.state == "explosion") {
-        if (!this.exploded) {        
+        if (!this.exploded) {      
+          this.firework.applyForce(createVector(0, 0.1));  
           this.firework.update();
     
           if (this.firework.pos.y <= this.explosionPoint) {
@@ -76,7 +78,8 @@ class Firework {
           }
         }
     
-        for (let i = this.particles.length - 1; i >= 0; i--) {        
+        for (let i = this.particles.length - 1; i >= 0; i--) {     
+          this.particles[i].applyForce(gravity);
           this.particles[i].update();  
           if (this.particles[i].done()) {
             // At this point the particles is done after complete explosion.
@@ -102,7 +105,7 @@ class Firework {
 
       // Get points from the text
       this.textAsPoints = font.textToPoints(this.displayInSky, this.firework.pos.x - 100, this.firework.pos.y, fontSize, {
-        sampleFactor: 0.2, // Density of points
+        sampleFactor: 0.5, // Density of points
       });
 
 
