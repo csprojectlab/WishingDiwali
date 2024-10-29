@@ -37,7 +37,7 @@ function setup() {
 
 // Draw function to continuously render the canvas
 function draw() {
-  background(0, 0, 0, 40); // Set background with slight transparency
+  background(0, 0, 0, 20); // Set background with slight transparency
   
   // Set volume for sound effects
   l1.setVolume(0.01);
