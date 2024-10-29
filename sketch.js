@@ -3,6 +3,7 @@ const textInSky = ["HAPPY", "DIWALI", "SHIVANI"];
 let textInSkyCounter = 0;
 let fontSize = 50;
 let animationSpeed = 0.05; // Controls the speed of the animation
+let gravity;
 
 // launch pad variables.
 let initPos;
@@ -27,6 +28,7 @@ function setup() {
   textSize(14);
   initPos = createVector(width/2, height-100);
   col = color(255);
+  gravity = createVector(0, 0.1);
 }
 
 function draw() {
@@ -89,7 +91,7 @@ function mouseReleased() {
   constrainedY = constrain(mouseY, 100, height*2);
   launchPos = createVector(mouseX, constrainedY);
   vel = p5.Vector.sub(initPos, launchPos);
-  vel.mult(0.1);
+  vel.mult(0.13);
   l1.play();
   col = color(random(255), random(255), random(200, 255));
   fireworks.push(new Firework(mouseX, constrainedY, vel, col));  
