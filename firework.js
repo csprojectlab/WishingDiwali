@@ -104,8 +104,9 @@ class Firework {
       textInSkyCounter = (textInSkyCounter + 1) % textInSky.length;
 
       // Get points from the text
+      fontSize = random(30, 50);
       this.textAsPoints = font.textToPoints(this.displayInSky, this.firework.pos.x - 100, this.firework.pos.y, fontSize, {
-        sampleFactor: 0.5, // Density of points
+        sampleFactor: random(0.1, 0.6), // Density of points
       });
 
 
