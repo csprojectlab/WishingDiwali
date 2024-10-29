@@ -9,7 +9,7 @@ class Firework {
       this.doneParticles = [];
       this.state = "explosion"  // > formation
       this.scatteredPoints = [];
-      this.tolerance = 1;
+      this.tolerance = 0.05;
       this.explosionPoint = random(50,200);
     }
 
