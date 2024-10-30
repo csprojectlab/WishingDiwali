@@ -36,7 +36,7 @@ function setup() {
 }
 
 // Draw function to continuously render the canvas
-function draw() {
+async function draw() {
   background(0, 0, 0, 20); // Set background with slight transparency
   
   // Set volume for sound effects
@@ -73,13 +73,24 @@ function draw() {
   noStroke(); // Disable stroke for the following shapes
   
   // Update and show the status of the fireworks
-  for (let i=0; i < fireworks.length; i++) {
-    fireworks[i].update(); // Update firework's position and state
-    fireworks[i].show(); // Display the firework on the canvas
-    // Remove firework if it's done
-    if (fireworks[i].done()) 
-        fireworks.splice(i, 1);   
-  }
+  // for (let i=0; i < fireworks.length; i++) {
+  //   fireworks[i].update(); // Update firework's position and state
+  //   fireworks[i].show(); // Display the firework on the canvas
+  //   // Remove firework if it's done
+  //   if (fireworks[i].done()) 
+  //       fireworks.splice(i, 1);   
+  // }
+  let updates = fireworks.map(async (firework, index) => {
+    firework.update();
+    firework.show();
+    return firework.done() ? index : null;
+  });
+  // Wait for all updates to finish
+  let results = await Promise.all(updates);
+  results
+    .filter(index => index !== null)
+    .reverse() // Reverse to avoid issues with splicing while iterating
+    .forEach(index => fireworks.splice(index, 1));
 
   // Allow next launch if mouse is released
   if (launching && !mouseIsPressed) 
@@ -89,6 +100,15 @@ function draw() {
   fill(255); // Set text color to white
   noStroke();
   text(prompt, width/2+40, height-20); // Draw prompt text
+  push()
+  textSize(10)
+  fill(255, 255,0)
+  text("Ari", width - 17, height - 3);
+  pop()
+  push()
+  textSize(50)
+  text("🌕", width - 100, 70);
+  pop()
 }
 
 // Initiate the launch while the mouse is pressed
