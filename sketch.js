@@ -125,5 +125,11 @@ function mouseReleased() {
   vel.mult(0.13); // Scale the velocity
   l1.play(); // Play launch sound
   col = color(random(255), random(255), random(200, 255)); // Randomize firework color
+  if (textInSkyCounter == 6){
+    for(let x = 0; x < 5; x++){
+      fireworks.push(new Firework(mouseX + random(-40, 40), constrainedY, vel, col));
+    }
+  } else{
   fireworks.push(new Firework(mouseX, constrainedY, vel, col)); // Add new firework to the array
+  }
 }
