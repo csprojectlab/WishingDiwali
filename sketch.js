@@ -1,7 +1,7 @@
 // Array to hold firework objects
 const fireworks = [];
 // Array of texts to display in the sky
-const textInSky = ["ARI", "LOVES", "SHIVANI", "SHIVANI", "LOVES", "ARI?", "YES!!"];
+const textInSky = ["ARI", "LOVES", "SHIVANI", "SHIVANI", "LOVES", "ARI?", "YES!!", "YES!!"];
 let textInSkyCounter = 0; // Counter for cycling through text
 let fontSize = 50; // Base font size for displaying text
 let animationSpeed = 0.05; // Controls the speed of the animation
